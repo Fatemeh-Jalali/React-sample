@@ -1,5 +1,5 @@
-import { ArrowUpCircleIcon } from "@heroicons/react/20/solid";
-import { character, episodes }  from "../../data/data";
+import { ArrowUpCircleIcon } from "@heroicons/react/24/outline";
+import {charecter, episode} from "../../data/data";
 function CharacterDetail() {
   return (
     <div style={{flex:1}}>
@@ -52,4 +52,4 @@ function CharacterDetail() {
   )
 }
 
-export default CharacterDetail
+export default CharacterDetail;
