@@ -1,10 +1,10 @@
 import {HeartIcon} from "@heroicons/react/24/outline"
-export default function Navbar({numOfResult}){
+export default function Navbar({children}){
     return (
     <nav className="navbar">
        <Logo/> 
        <Search/>
-       <searchResult numOfResult={numOfResult}/>
+       {children}
        <Favourites/>
        
     </nav>
@@ -19,7 +19,7 @@ function search(){
 return <input type="text" className="text-field" placeholder="search" />
 }
 
-function searchResult(numOfResult){
+export function searchResult(numOfResult){
 return <div className="navbar__result">Found{numOfResult} characters</div>
 
 }

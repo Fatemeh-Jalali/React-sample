@@ -1,16 +1,19 @@
 
 import { useState } from "react";
+import { allCharacters } from "../data/data";
 import "./App.css";
 import CharacterDetail from "./components/CharacterDetail";
 import CharacterList from "./components/CharacterList";
-import Navbar from "./components/Navbar";
+import Navbar ,{SearchResult} from "./components/Navbar";
 
 function App(){
   const [characters, setCharacters] = useState(allCharacters);
   return (
   <div className="app">
-    <Navbar numOfReasult ={characters.length}/>
-    <Main characters={characters}/>
+    <Navbar >
+      <SearchResult numOfReasult ={characters.length}/>
+    </Navbar>
+    <Main>
     <CharacterList characters={characters}/>
     <CharacterDetail />
     </Main>
