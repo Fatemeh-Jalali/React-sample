@@ -3,7 +3,6 @@ export default function Navbar({children}){
     return (
     <nav className="navbar">
        <Logo/> 
-       <Search/>
        {children}
        <Favourites/>
        

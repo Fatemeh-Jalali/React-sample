@@ -10,8 +10,10 @@ import axios from "axios";
 
 
 function App(){
-  const [characters, setCharacters] = useState(allCharacters);
-  const [isLoading,setIsLoading] = useState(false)
+  const [characters, setCharacters] = useState([]);
+  const [isLoading,setIsLoading] = useState(false);
+  const [query, setQuery] = useState(null);
+  
 
   useEffect(() =>{
     async function fetchData(){
@@ -22,9 +24,8 @@ function App(){
       // setIsLoading(false);
 
       } catch (err) {
-
-        console.log(err.message);
-        toast.error(err.message)
+        console.log(err.response.data.error);
+        toast.error(err.response.data.error);
       }finally{
       setIsLoading(false);
 
@@ -38,12 +39,13 @@ function App(){
   <div className="app">
   <Toaster/>
     <Navbar >
+    <Search/>
       <SearchResult numOfReasult ={characters.length}/>
     </Navbar>
     <Main>
       {isLoading ?
       <Loader />:
-      <CharacterList characters={characters} isLoading={isLoading}/>}
+      <CharacterList characters={characters} isLoading={isLoading} onSelectCharacter={onSelectCharacter}/>}
       <CharacterDetail />
     </Main>
   </div>

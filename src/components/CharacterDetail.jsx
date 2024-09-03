@@ -1,6 +1,7 @@
 import { ArrowUpCircleIcon } from "@heroicons/react/24/outline";
-import {charecter, episode} from "../../data/data";
-function CharacterDetail() {
+import { episode} from "../../data/data";
+function CharacterDetail(selectId) {
+  const [character, setCharacters] = useState(null)
   return (
     <div style={{flex:1}}>
       <div className="character-detail">

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Loader from "./Loader";
 
 
-function CharacterList(characters, children, isLoading) {
+function CharacterList(characters, children, isLoading, onSelectCharacter) {
 
 if(isLoading) 
 return (
@@ -15,7 +15,7 @@ return (
   return (
     <div className="characters-list">
         {characters.map((item) => (
-            <Character key={item.id} item={item} />
+            <Character key={item.id} item={item} onSelectCharacter={onSelectCharacter} />
         )  )}
     </div>
   );
@@ -30,7 +30,7 @@ function Character({item}){
      <CharacterName item={item}/>
      <CharacterInfo item={item}/>
 
-        <button className="icon red">
+        <button className="icon red"> onClick={() => onSelectCharacter(item.id)}
           <EyeIcon />
         </button>
     </div>
