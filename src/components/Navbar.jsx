@@ -4,7 +4,6 @@ export default function Navbar({children}){
     <nav className="navbar">
        <Logo/> 
        {children}
-       <Favourites/>
        
     </nav>
 );
@@ -23,7 +22,7 @@ return <div className="navbar__result">Found{numOfResult} characters</div>
 
 }
 
-function Favourites(){
+export function Favourites(){
     return(
         <button className="heart">
             <HeartIcon className="icon" />

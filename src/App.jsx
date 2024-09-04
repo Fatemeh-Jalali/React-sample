@@ -13,7 +13,7 @@ function App(){
   const [characters, setCharacters] = useState([]);
   const [isLoading,setIsLoading] = useState(false);
   const [query, setQuery] = useState(null);
-  
+  const [Favourites, setFavourites] = useState([]);
 
   useEffect(() =>{
     async function fetchData(){
@@ -41,6 +41,7 @@ function App(){
     <Navbar >
     <Search/>
       <SearchResult numOfReasult ={characters.length}/>
+      <Favourites numOfFavourites = {Favourites.length} />
     </Navbar>
     <Main>
       {isLoading ?

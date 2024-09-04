@@ -1,7 +1,53 @@
 import { ArrowUpCircleIcon } from "@heroicons/react/24/outline";
 import { episode} from "../../data/data";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+
 function CharacterDetail(selectId) {
-  const [character, setCharacters] = useState(null)
+  const [character, setCharacters] = useState(null);
+  const [isLoading, setIsLoading]= useState(false);
+  const [episodes, setEpisodes] = useState([]);
+
+  useEffect(()=>{
+    async function fetchData(){
+      try{
+      setIsLoading(true);
+    const {data} = await  axios.get(
+      `https://rickanndmortyapi.com/api/characters/${selectId}`);
+      data.episode.map((e) => e.split('/').at(-1));
+      setCharacters(data);
+
+
+
+    }catch(error){
+      toast.error(error.response.error)
+
+    }finally{
+      setIsLoading(false);
+    }
+  }
+  if(selectId) fetchData();
+}, [selectedId]);
+if(isLoading)
+  return(
+<div style={{flex:1}}>
+  <Loader/>
+</div>
+);
+
+
+
+if(!character || !selectId)
+   return (
+   <div style={{flex:1, color:"var(--slate-300)"}}>
+    please select a chaaracter.
+    </div>
+   );
+  
+
+
+
   return (
     <div style={{flex:1}}>
       <div className="character-detail">
@@ -50,7 +96,7 @@ function CharacterDetail(selectId) {
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
 export default CharacterDetail;
