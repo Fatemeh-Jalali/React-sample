@@ -34,6 +34,12 @@ function App(){
     }
     fetchData();
   }, []);
+  
+
+  const isAddToFavourite = Favourites.map((fav) => fav.id).includes(selectedId);
+
+
+
 
   return (
   <div className="app">

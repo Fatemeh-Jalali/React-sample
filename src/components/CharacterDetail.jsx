@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-function CharacterDetail(selectId) {
+function CharacterDetail(selectId, onAddFavourite) {
   const [character, setCharacters] = useState(null);
   const [isLoading, setIsLoading]= useState(false);
   const [episodes, setEpisodes] = useState([]);
@@ -69,7 +69,7 @@ if(!character || !selectId)
             <p>{character.location.name}</p>
           </div>
           <div className="action">
-            <button className="btn btn--primary">add to Favourite</button>
+            <button onClick={() => onAddFavourite(character)} className="btn btn--primary">add to Favourite</button>
           </div>
         </div>
       </div>

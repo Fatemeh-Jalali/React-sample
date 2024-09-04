@@ -22,11 +22,11 @@ return <div className="navbar__result">Found{numOfResult} characters</div>
 
 }
 
-export function Favourites(){
+export function Favourites({numOfFavourites}){
     return(
         <button className="heart">
             <HeartIcon className="icon" />
-            <span className="badge">4</span>
+            <span className="badge">{numOfFavourites}</span>
         </button>
     );
 }
