@@ -33,13 +33,15 @@ function App(){
 
     }
     fetchData();
-  }, []);
+  }, [query]);
   
 
   const isAddToFavourite = Favourites.map((fav) => fav.id).includes(selectedId);
 
 
-
+const handleAddFavourite = (char) => {
+  setFavourites((preFav) => [...preFav, char]);
+};
 
   return (
   <div className="app">
