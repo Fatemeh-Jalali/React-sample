@@ -1,4 +1,9 @@
-import {HeartIcon} from "@heroicons/react/24/outline"
+import { HeartIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
+import Modal from "./Modal";
+import { Character } from "./CharacterList";
+
+
 export default function Navbar({children}){
     return (
     <nav className="navbar">
