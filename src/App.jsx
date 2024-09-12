@@ -39,6 +39,11 @@ function App(){
   const isAddToFavourite = Favourites.map((fav) => fav.id).includes(selectedId);
 
 
+const handleSelectCharacter = (id) => {
+  setSelectId((preId) => (preId == id ? null : id));
+
+};
+
 const handleAddFavourite = (char) => {
   setFavourites((preFav) => [...preFav, char]);
 };
