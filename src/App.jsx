@@ -7,13 +7,15 @@ import CharacterList from "./components/CharacterList";
 import Navbar ,{SearchResult} from "./components/Navbar";
 import { Toaster } from "react-hot-toast";
 import axios from "axios";
+import Modal from "./components/Modal";
 
 
 function App(){
   const [characters, setCharacters] = useState([]);
   const [isLoading,setIsLoading] = useState(false);
   const [query, setQuery] = useState(null);
-  const [Favourites, setFavourites] = useState([]);
+  const [favourites, setFavourites] = useState([]);
+  const [count, setCount] = useState(0);
 
   useEffect(() =>{
     async function fetchData(){
@@ -35,32 +37,48 @@ function App(){
     fetchData();
   }, [query]);
   
+  useEffect(() => {
+    setInterval(() => setCount((c) => c+1),1000);
+  },[count]);
 
-  const isAddToFavourite = Favourites.map((fav) => fav.id).includes(selectedId);
 
 
-const handleSelectCharacter = (id) => {
-  setSelectId((preId) => (preId == id ? null : id));
+  const handleSelectCharacter = (id) => {
+    setSelectId((preId) => (preId == id ? null : id));
+  
+  };
 
-};
+  const handleAddFavourite = (char) => {
+    setFavourites((preFav) => [...preFav, char]);
+  };
 
-const handleAddFavourite = (char) => {
-  setFavourites((preFav) => [...preFav, char]);
-};
+
+  const isAddToFavourite = favourites.map((fav) => fav.id).includes(selectedId);
+
 
   return (
   <div className="app">
   <Toaster/>
+  {/* <Modal title='modal test' open={true}> this ss </Modal> */}
     <Navbar >
     <Search/>
       <SearchResult numOfReasult ={characters.length}/>
       <Favourites numOfFavourites = {Favourites.length} />
     </Navbar>
     <Main>
-      {isLoading ?
-      <Loader />:
-      <CharacterList characters={characters} isLoading={isLoading} onSelectCharacter={onSelectCharacter}/>}
-      <CharacterDetail />
+      <CharacterList
+      selectedId={selectedId}
+       characters={characters} 
+       isLoading={isLoading} 
+       onSelectCharacter={handleSelectCharacter}/>
+
+       <CharacterDetail
+       selectedId={selectedId}
+       onAddFavourite={handleAddFavourite}
+       isAddToFavourite={isAddToFavourite}
+       />
+
+       
     </Main>
   </div>
   );
@@ -77,3 +95,8 @@ return
 
 }
 
+export default CharacterDetail;
+
+function characterSubInfo(){
+  return
+}

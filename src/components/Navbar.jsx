@@ -24,9 +24,12 @@ return <div className="navbar__result">Found{numOfResult} characters</div>
 
 export function Favourites({numOfFavourites}){
     return(
-        <button className="heart">
+        <>
+        <Modal />
+        <button className="heart" onClick={() => setIsOpen}>
             <HeartIcon className="icon" />
             <span className="badge">{numOfFavourites}</span>
         </button>
+        </>
     );
 }
